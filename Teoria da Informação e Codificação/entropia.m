@@ -1,0 +1,8 @@
+function H = entropia(p)
+    tam = length(p);
+    H = 0;
+    for i = 1 : tam
+        p(i) = p(i) + eps;
+        H = H - (p(i)*log2(p(i)));
+    end
+end
