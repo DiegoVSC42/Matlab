@@ -1,0 +1,19 @@
+function plot_ruidoso
+    t = -5 : 0.01:5;
+    x7 = sin(2*pi*t);
+    stem(x7);
+    figure
+    amplitude_ruido = 0;
+    x7_ruidoso = x7 + amplitude_ruido * randn(1,length(t));
+    y7a = acumulador(x7_ruidoso);stem(y7a);title("Sinal ruidoso para amplitude = 0");
+    figure
+    amplitude_ruido = 0.5;
+    x7_ruidoso = x7 + amplitude_ruido * randn(1,length(t));
+    y7a = acumulador(x7_ruidoso);stem(y7a);title("Sinal ruidoso para amplitude = 0.5");
+    figure
+    amplitude_ruido = 1;
+    x7_ruidoso = x7 + amplitude_ruido * randn(1,length(t));
+    y7a = acumulador(x7_ruidoso);stem(y7a);title("Sinal ruidoso para amplitude = 1");
+
+end
+
