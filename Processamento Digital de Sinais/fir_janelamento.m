@@ -1,0 +1,43 @@
+function [h,H] = fir_janelamento(fs,f1,f2,N,window)
+    
+    fref = fs/2;
+    
+    omega_1 = f1*(pi/fref);
+    omega_2 = f2*(pi/fref);
+    omega_0 = (omega_2 + omega_1)/2;
+    B = (omega_2-omega_1)/2;
+    tamanho = 2 * N+1;
+    
+    
+
+    switch window
+        case 1
+            ret = ones(1,tamanho);
+            w = ret;
+            titulo = "Resposta em amplitude utilizando janela retangular";
+        case 2
+            w = hamming(tamanho)';
+            titulo = "Resposta em amplitude utilizando janela de Hamming";
+        case 3
+            w = gausswin(tamanho)';
+            titulo = 'Resposta em amplitude utilizando janela Gaussiana';
+    end
+
+    n = -N : N;
+    n = n+eps;
+    h = (1./(n.*pi)).*sin(n * B).*cos(omega_0 * n).*w;
+    %stem(h);
+    H = abs(fft(h,10*length(h)));
+    H = H(1:end/2);
+    plot(H);
+    
+    switch window
+        case 1
+            title("Resposta em amplitude utilizando janela retangular");
+        case 2
+            title("Resposta em amplitude utilizando janela de Hamming");
+        case 3
+            title('Resposta em amplitude utilizando janela Gaussiana');
+    end
+    
+end
