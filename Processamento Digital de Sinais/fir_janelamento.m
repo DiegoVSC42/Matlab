@@ -7,20 +7,15 @@ function [h,H] = fir_janelamento(fs,f1,f2,N,window)
     omega_0 = (omega_2 + omega_1)/2;
     B = (omega_2-omega_1)/2;
     tamanho = 2 * N+1;
-    
-    
 
     switch window
         case 1
             ret = ones(1,tamanho);
             w = ret;
-            titulo = "Resposta em amplitude utilizando janela retangular";
         case 2
             w = hamming(tamanho)';
-            titulo = "Resposta em amplitude utilizando janela de Hamming";
         case 3
             w = gausswin(tamanho)';
-            titulo = 'Resposta em amplitude utilizando janela Gaussiana';
     end
 
     n = -N : N;
