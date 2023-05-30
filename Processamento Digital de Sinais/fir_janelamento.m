@@ -24,15 +24,5 @@ function [h,H] = fir_janelamento(fs,f1,f2,N,window)
     %stem(h);
     H = abs(fft(h,10*length(h)));
     H = H(1:end/2);
-    plot(H);
-    
-    switch window
-        case 1
-            title("Resposta em amplitude utilizando janela retangular");
-        case 2
-            title("Resposta em amplitude utilizando janela de Hamming");
-        case 3
-            title('Resposta em amplitude utilizando janela Gaussiana');
-    end
     
 end
