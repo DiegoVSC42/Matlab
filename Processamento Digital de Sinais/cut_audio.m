@@ -2,6 +2,8 @@ function cut_audio(inFile,begin_cut,end_cut,outFile)
 
     % Carregando o arquivo de entrada
     [y, fs] = audioread(inFile);
+    fs
+    size(y)
 
     % Obtendo os índices correspondentes ao intervalo de tempo
     indice_inicial = round(begin_cut * fs) + 1;
