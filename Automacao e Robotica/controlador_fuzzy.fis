@@ -1,0 +1,33 @@
+[System]
+Name='controlador_fuzzy'
+Type='mamdani'
+Version=2.0
+NumInputs=1
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Entrada'
+Range=[0 1]
+NumMFs=3
+MF1='baixa':'trimf',[-0.416666666666667 0 0.416666666666667]
+MF2='media':'trimf',[0.0833333333333333 0.5 0.916666666666667]
+MF3='alta':'trimf',[0.583333333333333 1 1.41666666666667]
+
+[Output1]
+Name='Saída'
+Range=[0 1]
+NumMFs=3
+MF1='baixa':'trimf',[-0.4167 0 0.4167]
+MF2='media':'trimf',[0.0833333333333333 0.5 0.916666666666667]
+MF3='alta':'trimf',[0.583333333333333 1 1.41666666666667]
+
+[Rules]
+1, 3 (1) : 1
+2, 2 (1) : 1
+3, 1 (1) : 1

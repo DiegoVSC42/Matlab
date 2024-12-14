@@ -1,0 +1,17 @@
+function resp = mod_esc(x,h,v)
+    
+    [L,C] = size(x);
+    N = 2;
+    xh = zeros(2*L,2*C);
+    [Lxh,Cxh] = size(xh);
+    for i = 1 : 1 : Lxh
+        for j = 1: 1 : Cxh
+            for k = 1: 1 : L
+                for l = 1: 1 : C
+                    xh(i,j) = x(
+                end
+            end
+        end
+    end
+    x
+    xh

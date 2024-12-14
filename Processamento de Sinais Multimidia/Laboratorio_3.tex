@@ -1,0 +1,240 @@
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and export to LaTeX again.
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{epstopdf}
+\usepackage[table]{xcolor}
+\usepackage{matlab}
+
+\sloppy
+\epstopdfsetup{outdir=./}
+\graphicspath{ {./Laboratorio_3_images/} }
+
+\begin{document}
+
+\matlabtitle{Atividade de laboratório }
+
+\matlabheading{Redimensionamento de imagens}
+
+\begin{matlabcode}
+%Carrega a imagem
+x = imread("Lenna.jpg");
+imshow(x, 'InitialMagnification',100);
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{69.44305067737079em}]{figure_0.png}
+\end{center}
+\begin{matlabcode}
+%Converte para escala de cinza
+x = rgb2gray(x);
+%Normaliza
+x = double(x)/255;
+%Mostra dimensões da imagem
+[L,C] = size(x);
+
+%Mostra a imagem com o tamanho correto para ser possivel ver alteracao de
+%tamanho
+imshow(x, 'InitialMagnification',100);
+title("Imagem original em escala de cinza");
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{69.44305067737079em}]{figure_1.png}
+\end{center}
+\begin{matlabcode}
+disp(['Dimensões = ', num2str(L), ' x ', num2str(C)]);
+\end{matlabcode}
+\begin{matlaboutput}
+Dimensões = 512 x 512
+\end{matlaboutput}
+\begin{matlabcode}
+%Mostra a imagem com tamanho comprimido
+y_comprimido = dil_or_com(x,"c");
+imshow(y_comprimido, 'InitialMagnification',100);
+[L,C] = size(y_comprimido);
+title("Imagem comprimida por fator N = 2");
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{43.753135975915704em}]{figure_2.png}
+\end{center}
+\begin{matlabcode}
+disp(['Dimensões = ', num2str(L), ' x ', num2str(C)]);
+\end{matlabcode}
+\begin{matlaboutput}
+Dimensões = 256 x 256
+\end{matlaboutput}
+\begin{matlabcode}
+%Mostra a imagem com tamanho dilatado
+y_dilatado = dil_or_com(x,"d");
+imshow(y_dilatado, 'InitialMagnification',100);
+[L,C] = size(y_dilatado);
+title("Imagem dilatada por fator N = 2");
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{86.60311088810838em}]{figure_3.png}
+\end{center}
+\begin{matlabcode}
+disp(['Dimensões = ', num2str(L), ' x ', num2str(C)]);
+\end{matlabcode}
+\begin{matlaboutput}
+Dimensões = 1024 x 1024
+\end{matlaboutput}
+
+\matlabheading{Quantizaçao de Imagens}
+
+\begin{matlabcode}
+N = 2;
+[y, erro_relativo] = quantizacao(x,N);
+imshow(y);
+title("Imagem com 2 níveis de cinza")
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{69.44305067737079em}]{figure_4.png}
+\end{center}
+\begin{matlabcode}
+N = 3;
+[y, erro_relativo] = quantizacao(x,N);
+imshow(y);
+title("Imagem com 3 níveis de cinza")
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{69.44305067737079em}]{figure_5.png}
+\end{center}
+\begin{matlabcode}
+N = 4;
+[y, erro_relativo] = quantizacao(x,N);
+imshow(y);
+title("Imagem com 4 níveis de cinza")
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{69.44305067737079em}]{figure_6.png}
+\end{center}
+\begin{matlabcode}
+N = 5;
+[y, erro_relativo] = quantizacao(x,N);
+imshow(y);
+title("Imagem com 5 níveis de cinza")
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{69.44305067737079em}]{figure_7.png}
+\end{center}
+\begin{matlabcode}
+N = 10;
+[y, erro_relativo] = quantizacao(x,N);
+imshow(y);
+title("Imagem com 10 níveis de cinza")
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{69.44305067737079em}]{figure_8.png}
+\end{center}
+\begin{matlabcode}
+N = 25;
+[y, erro_relativo] = quantizacao(x,N);
+imshow(y);
+title("Imagem com 25 níveis de cinza")
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{69.44305067737079em}]{figure_9.png}
+\end{center}
+\begin{matlabcode}
+plot_erro_relativo(x);
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{56.196688409433015em}]{figure_10.eps}
+\end{center}
+
+\begin{par}
+\begin{flushleft}
+Através dos testes de quantização utilizando varios tipos de niveis de cinza foi possivel notar que quanto maior a quantidade de niveis de cinza, mais nítida é a imagem e isso também implica que o erro relativo é menor para niveis de cinza suficientemente grandes, por exemplo: com N igual a 25 ja foi possivel observar que a imagem estava bem nítida, porém não tanto quanto a originial pois ao fundo é possível perceber pequenos 'borrões'.
+\end{flushleft}
+\end{par}
+
+
+\begin{matlabcode}
+function y = dil_or_com (x,modo)
+    %Guarda a quantidade de linhas e colunas da entrada
+    [L,C] = size(x);
+    %Parte que faz a dilatação
+    if(modo == 'd')
+        x_dil = zeros(L*2,C*2);
+        for i = 1 : L
+            for j = 1 : C
+                atual = x(i,j);
+                x_dil(i+i-1,j+j-1) = atual;
+                x_dil(i+i-1+1,j+j-1) = atual;
+                x_dil(i+i-1,j+j-1+1) = atual;
+                x_dil(i+i-1+1,j+j-1+1) = atual;
+            end
+        end
+        y = x_dil;
+   %Parte que faz a compressão 
+    else 
+        if (modo == 'c')
+            [L,C] = size(x);
+            x_com = zeros(L/2,C/2);
+            [L,C] = size(x_com);
+            for i = 1 : L
+                for j = 1 : C
+                    atual = x(i+i-1,j+j-1);
+                    x_com(i,j) = atual;
+                    x_com(i+1,j) = atual;
+                    x_com(i,j+1) = atual;
+                    x_com(i+1,j+1) = atual;
+                end
+            end
+            %Deixando do tamanho correto pois estava gerando uma linha e uma coluna
+            %extra
+            x_com = x_com(1:end-1, 1:end-1);
+            y = x_com;
+        end
+    end
+end
+    
+function [y, erro_relativo] = quantizacao (x,N)
+    %cria um vetor com os niveis de quantizacao entre 0 e 1
+    niveis = linspace(0,1,N);
+    %faz a interpolação dos niveis com a imagem
+    y = interp1(niveis, niveis, x, 'nearest');
+    
+    [L,C] = size(x);
+    num = zeros(L,C);
+    den = num;
+    for i = 1 : L
+        for j = 1 : C
+            num(i,j) = (abs(x(i,j) - y(i,j)))^2;
+            den(i,j) = (abs(x(i,j)))^2;
+        end
+    end
+    erro_relativo = num/den;
+    %transformando em um unico valor obtendo a média da matriz
+    erro_relativo = mean(erro_relativo(:));
+end
+
+function plot_erro_relativo(x)
+    vet_N = 2:256;
+    vet_erros = zeros(1,255);
+    for N = 2 : length(vet_N)
+        [y, vet_erros(N)] = quantizacao(x,N);
+    end
+
+        % Plote o gráfico de Erelat em relação a N.
+    figure;
+    plot(vet_N,vet_erros);
+    xlabel('N');
+    ylabel('Erro Relativo');
+    title('Erro Relativo x Níveis de Cinza');
+
+    
+end
+
+\end{matlabcode}
+
+\end{document}
